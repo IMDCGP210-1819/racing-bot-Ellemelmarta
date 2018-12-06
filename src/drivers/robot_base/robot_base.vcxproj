@@ -12,7 +12,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2563DECC-BDDF-4379-A177-EA89F83D7B1C}</ProjectGuid>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -91,7 +91,7 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>tgf.lib;robottools.lib;sg_vs2008_32.lib;ul_vs2008_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tgf.lib;robottools.lib;sg_vs2008_32.lib;ul_vs2017_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>.\Release/robot_base.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../../export/lib;../../windows/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -146,7 +146,7 @@
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <Link>
-      <AdditionalDependencies>legacy_stdio_definitions.lib;tgf.lib;robottools.lib;sg_vs2008_32.lib;ul_vs2008_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;tgf.lib;robottools.lib;sg_vs2008_32.lib;ul_vs2017_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>.\Debug/robot_base.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../../export/libd;../../windows/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

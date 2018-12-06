@@ -49,7 +49,7 @@ robot_base(tModInfo *modInfo)
 {
     memset(modInfo, 0, 10*sizeof(tModInfo));
 
-    modInfo->name    = strdup("robot_base");		/* name of the module (short) */
+    modInfo->name    = strdup("carter");		/* name of the module (short) */
     modInfo->desc    = strdup("");	/* description of the module (can be long) */
     modInfo->fctInit = InitFuncPt;		/* init function */
     modInfo->gfId    = ROB_IDENT;		/* supported framework version */
