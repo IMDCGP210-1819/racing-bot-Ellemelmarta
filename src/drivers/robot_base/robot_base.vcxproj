@@ -172,6 +172,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BehaviourTree.cpp" />
     <ClCompile Include="robot_base.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +181,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BehaviourTree.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\robottools\robottools.vcxproj">

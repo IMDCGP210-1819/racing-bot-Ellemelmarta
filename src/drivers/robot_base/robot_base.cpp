@@ -94,16 +94,41 @@ static void
 drive(int index, tCarElt* car, tSituation *s) 
 { 
     memset((void *)&car->ctrl, 0, sizeof(tCarCtrl)); 
-    car->ctrl.brakeCmd = 1.0; /* all brakes on ... */ 
-    /*  
-     * add the driving code here to modify the 
-     * car->_steerCmd 
-     * car->_accelCmd 
-     * car->_brakeCmd 
-     * car->_gearCmd 
-     * car->_clutchCmd 
-     */ 
+
+	//this code below will completely steer the car around any track *at slow speed only*
+	//just implement a behaviour tree for gears and stuff as well as trying to do it for steering
+	//and use this code for the steering section
+
+	float angle;
+	//tuning modifier
+	const float SC = 1;
+
+
+
+	angle = RtTrackSideTgAngleL(&(car->_trkPos)) - car->_yaw;
+	NORM_PI_PI(angle); // put the angle back in the range from -PI to PI
+	angle -= SC * car->_trkPos.toMiddle / car->_trkPos.seg->width;
+
+	// the steer value calculation is now between 1.0 and -1.0
+	car->ctrl.steer = angle / car->_steerLock;
+
+	//Behaviour tree to control all of these
+	car->ctrl.gear = 1; 
+	car->ctrl.accelCmd = 1; 
+	car->ctrl.brakeCmd = 0.0;
+
+
+	  /*
+	 * add the driving code here to modify the
+	 * car->_steerCmd
+	 * car->_accelCmd
+	 * car->_brakeCmd
+	 * car->_gearCmd
+	 * car->_clutchCmd
+	 */
 }
+
+  
 
 /* End of the current race */
 static void
