@@ -89,10 +89,47 @@ newrace(int index, tCarElt* car, tSituation *s)
 { 
 } 
 
+int getGear(tCarElt *car)
+{
+	/*
+	gear up and gear down are both seperate tasks i can make in the bt
+
+	"is not at red line?" can be the bool at start to check if it even needs
+	to shift gear or now
+
+	can also be done with a switch such as in the drive command it just isnt as
+	efficent for driving but its the way ive worked out for up shifting
+	*/
+
+	//gear up
+
+	if (car->_gear <= 0) return 1;
+	float gr_up = car->_gearRatio[car->_gear + car->_gearOffset];
+	float omega = car->_enginerpmRedLine / gr_up;
+	float wr = car->_wheelRadius(2);
+
+	if (omega*wr*0.9 < car->_speed_x) {
+		return car->_gear + 1;
+	}
+	//gear down
+	else {
+		float gr_down = car->_gearRatio[car->_gear + car->_gearOffset - 1];
+		omega = car->_enginerpmRedLine / gr_down;
+		if (car->_gear > 1 && omega*wr*0.9 > car->_speed_x + 4.0) {
+			return car->_gear - 1;
+		}
+	}
+	return car->_gear;
+	//always return gear no matter what
+}
+
+
+
 /* Drive during race. */
 static void  
 drive(int index, tCarElt* car, tSituation *s) 
 { 
+
     memset((void *)&car->ctrl, 0, sizeof(tCarCtrl)); 
 
 	//this code below will completely steer the car around any track *at slow speed only*
@@ -104,7 +141,6 @@ drive(int index, tCarElt* car, tSituation *s)
 	const float SC = 1;
 
 
-
 	angle = RtTrackSideTgAngleL(&(car->_trkPos)) - car->_yaw;
 	NORM_PI_PI(angle); // put the angle back in the range from -PI to PI
 	angle -= SC * car->_trkPos.toMiddle / car->_trkPos.seg->width;
@@ -112,10 +148,35 @@ drive(int index, tCarElt* car, tSituation *s)
 	// the steer value calculation is now between 1.0 and -1.0
 	car->ctrl.steer = angle / car->_steerLock;
 
-	//Behaviour tree to control all of these
-	car->ctrl.gear = 1; 
+	//Behaviour tree to control all of these 
 	car->ctrl.accelCmd = 1; 
 	car->ctrl.brakeCmd = 0.0;
+	//getGear(car);
+
+
+	//this is potienally another way of switching gears
+	int gearNumber;
+	if (car->priv.enginerpm >= car->priv.enginerpmRedLine)
+	{
+		switch (car->_gear)
+		{
+			case 0:
+				gearNumber = 1;
+				break;
+			case 1:
+				gearNumber = 2;
+				break;
+			case 2:
+				gearNumber = 3;
+				break;
+			case 3:
+				gearNumber = 4;
+				break;
+			default:
+				break;
+		}
+	}
+	car->ctrl.gear = gearNumber;
 
 
 	  /*
@@ -142,3 +203,26 @@ shutdown(int index)
 {
 }
 
+/*
+Utilities
+*/
+
+
+
+
+
+
+float getAllowedSpeed(tTrackSeg *segment)
+{
+	//if segment is straight then get max speed
+	if (segment->type == TR_STR)
+	{
+		return FLT_MAX;
+	}
+	//otherwise work out max speed based on friction*radius of the turn (to avoid spinouts)
+	else
+	{
+		float mu = segment->surface->kFriction;
+		return sqrt(mu*segment->radius);
+	}
+}
