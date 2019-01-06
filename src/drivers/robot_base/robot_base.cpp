@@ -187,9 +187,17 @@ drive(int index, tCarElt* car, tSituation *s)
 	 * car->_gearCmd
 	 * car->_clutchCmd
 	 */
-}
 
-  
+    car->ctrl.brakeCmd = 1.0; /* all brakes on ... */ 
+    /*  
+     * add the driving code here to modify the 
+     * car->_steerCmd 
+     * car->_accelCmd 
+     * car->_brakeCmd 
+     * car->_gearCmd 
+     * car->_clutchCmd 
+     */ 
+}
 
 /* End of the current race */
 static void
@@ -203,11 +211,11 @@ shutdown(int index)
 {
 }
 
+
+
 /*
 Utilities
 */
-
-
 
 
 

@@ -80,7 +80,57 @@
 
   <section name="Drivers Start List">
     <section name="1">
-      <attstr name="module" val="robot_base"/>
+      <attstr name="module" val="barber"/>
+      <attnum name="idx" val="1"/>
+    </section>
+
+    <section name="2">
+      <attstr name="module" val="chamberlain"/>
+      <attnum name="idx" val="1"/>
+    </section>
+
+    <section name="3">
+      <attstr name="module" val="crewe"/>
+      <attnum name="idx" val="1"/>
+    </section>
+
+    <section name="4">
+      <attstr name="module" val="dewhurst"/>
+      <attnum name="idx" val="1"/>
+    </section>
+
+    <section name="5">
+      <attstr name="module" val="dorman"/>
+      <attnum name="idx" val="1"/>
+    </section>
+
+    <section name="6">
+      <attstr name="module" val="jamieson"/>
+      <attnum name="idx" val="1"/>
+    </section>
+
+    <section name="7">
+      <attstr name="module" val="manthorp"/>
+      <attnum name="idx" val="1"/>
+    </section>
+
+    <section name="8">
+      <attstr name="module" val="pyke"/>
+      <attnum name="idx" val="1"/>
+    </section>
+
+    <section name="9">
+      <attstr name="module" val="reynolds"/>
+      <attnum name="idx" val="1"/>
+    </section>
+
+    <section name="10">
+      <attstr name="module" val="wilby"/>
+      <attnum name="idx" val="1"/>
+    </section>
+
+    <section name="11">
+      <attstr name="module" val="wilson"/>
       <attnum name="idx" val="1"/>
     </section>
 
